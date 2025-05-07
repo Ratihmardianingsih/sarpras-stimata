@@ -47,4 +47,11 @@ class User extends Authenticatable
     ];
     const ROLE_ADMIN = 'admin';
     const ROLE_PEMINJAM = 'peminjam';
+
+    // Model User
+public function peminjaman()
+{
+    return $this->hasMany(Peminjaman::class);
+}
+
 }

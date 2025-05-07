@@ -12,14 +12,14 @@ return new class extends Migration
     public function up()
 {
     Schema::table('kategoris', function (Blueprint $table) {
-        $table->string('deskripsi')->nullable(); // Menambahkan kolom deskripsi
+        $table->integer('kapasitas')->nullable();
     });
 }
 
 public function down()
 {
     Schema::table('kategoris', function (Blueprint $table) {
-        $table->dropColumn('deskripsi');
+        $table->dropColumn('kapasitas');
     });
 }
 

@@ -8,25 +8,27 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID Transaksi</th>
-                    <th>Nama Peminjam</th> <!-- Mengganti nama_pembeli dengan nama_peminjam -->
-                    <th>Jumlah</th>
-                    <th>Status Transaksi</th>
-                    <th>Tanggal</th>
-                    <th>Aksi</th>
+                    <th>No</th>
+                    <th>Kode Kategori</th>
+                    <th>Peminjam</th>
+                    <th>Nama Ruangan</th>
+                    <th>Kapasitas</th>
+                    <th>Tanggal Pinjam</th>
+                    <th>Keterangan</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($transaksis as $transaksi)
+                @foreach ($riwayat as $item)
                     <tr>
-                        <td>{{ $transaksi->id }}</td>
-                        <td>{{ $transaksi->nama_peminjam }}</td> <!-- Pastikan nama_peminjam ada di data -->
-                        <td>{{ number_format($transaksi->jumlah, 0, ',', '.') }}</td>
-                        <td>{{ $transaksi->status }}</td>
-                        <td>{{ $transaksi->created_at->format('d-m-Y H:i') }}</td>
-                        <td>
-                            <a href="{{ route('riwayat-transaksi.show', $transaksi->id) }}" class="btn btn-info">Detail</a>
-                        </td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->peminjaman->kode_kategori ?? 'Data tidak ditemukan' }}</td>
+                        <td>{{ $item->peminjaman->peminjam->name ?? 'Data tidak ditemukan' }}</td>
+                        <td>{{ $item->peminjaman->ruangan->nama_ruangan ?? 'Data tidak ditemukan' }}</td>
+                        <td>{{ $item->peminjaman->kapasitas ?? 'Data tidak ditemukan' }}</td>
+                        <td>{{ $item->peminjaman->tanggal_pinjam ?? 'Data tidak ditemukan' }}</td>
+                        <td>{{ $item->peminjaman->keterangan ?? 'Data tidak ditemukan' }}</td>
+                        <td>{{ $item->status }}</td>
                     </tr>
                 @endforeach
             </tbody>

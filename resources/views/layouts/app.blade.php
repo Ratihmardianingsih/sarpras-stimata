@@ -64,7 +64,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ url('/riwayat-transaksi') }}">
-                                                <i class="fas fa-history"></i> Riwayat Transaksi
+                                                <i class="fas fa-history"></i> Laporan
                                             </a>
                                         </li>
                                     </ul>
@@ -78,13 +78,26 @@
                         @endif
 
                         @if(auth()->user()->role == 'peminjam') <!-- Sidebar untuk Peminjam -->
-                            <!-- Peminjam hanya bisa akses Peminjaman -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#peminjamanDropdown" aria-expanded="false" aria-controls="peminjamanDropdown">
+                                <i class="fas fa-calendar-check"></i> Peminjaman Ruangan
+                            </a>
+                            <div class="collapse" id="peminjamanDropdown">
+                                <ul class="nav flex-column ms-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('/pinjam-ruangan') }}">
+                                            <i class="fas fa-calendar-plus"></i> Pinjam Ruangan
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/peminjaman/create') }}">
-                                    <i class="fas fa-calendar-check"></i> Peminjaman Ruangan
-                                </a>
-                            </li>
-                        @endif
+                                        <a class="nav-link" href="{{ url('/informasi') }}">
+                                            <i class></i> Informasi
+                                        </a>
+                                    </li>
+                        </li>
+                    @endif
 
                         <li class="nav-item">
                             <!-- Form logout dengan metode POST -->

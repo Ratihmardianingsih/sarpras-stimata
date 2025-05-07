@@ -2,19 +2,21 @@
 
 @section('content')
     <div class="container mt-5">
-        <h1 class="mb-4">Data Peminjaman</h1>
+        <h1 class="mb-4">Pinjam Ruang</h1>
+
+        <a href="{{ route('pinjamruangan.create') }}" class="btn btn-primary mb-3">Pinjam Ruangan</a>
 
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr>
-                    <th>No</th>               
+                    <th>No</th>
                     <th>Kode Kategori</th>
                     <th>Peminjam</th>
                     <th>Nama Ruangan</th>
                     <th>Kapasitas</th>
                     <th>Tanggal Pinjam</th>
                     <th>Keterangan</th>
-                    <th>Aksi</th> <!-- Aksi untuk admin -->
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,21 +29,7 @@
                         <td>{{ $pinjam->kapasitas }}</td>
                         <td>{{ $pinjam->tanggal_pinjam }}</td>
                         <td>{{ $pinjam->keterangan }}</td>
-                        <td>
-                            <!-- Form untuk menerima peminjaman -->
-                            <form action="{{ route('peminjaman.terima', $pinjam->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-success">Terima</button>
-                            </form>
-
-                            <!-- Form untuk menolak peminjaman -->
-                            <form action="{{ route('peminjaman.tolak', $pinjam->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-danger">Tolak</button>
-                            </form>
-                        </td>
-
-                        </td>
+                        <td>{{ $pinjam->status }}</td>
                     </tr>
                 @endforeach
             </tbody>

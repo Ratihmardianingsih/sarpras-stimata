@@ -1,25 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Transaksi; // Namespace sesuai dengan subfolder
+namespace App\Http\Controllers\Transaksi;
 
+use App\Models\RiwayatTransaksi;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; // Mengimpor Controller yang benar
-use App\Models\Transaksi;
+use App\Http\Controllers\Controller;  // Pastikan Controller di-include dengan benar
 
 class RiwayatTransaksiController extends Controller
 {
     public function index()
-    {
-        $transaksis = $transaksis = [
-            (object)[ 'id' => 1, 'nama_peminjam' => 'John Doe', 'jumlah' => 100000, 'status' => 'Selesai', 'created_at' => now() ],
-            (object)[ 'id' => 2, 'nama_peminjam' => 'Jane Doe', 'jumlah' => 200000, 'status' => 'Menunggu Pembayaran', 'created_at' => now()->subDays(1) ],
-            (object)[ 'id' => 3, 'nama_peminjam' => 'Alice Smith', 'jumlah' => 150000, 'status' => 'Dibatalkan', 'created_at' => now()->subDays(2) ]
-        ];
-         
-       
-        return view('riwayat-transaksi.index', compact('transaksis'));
-    }
+{
+    $riwayat = RiwayatTransaksi::with('peminjaman')->get();
+    return view('riwayat-transaksi.index', compact('riwayat'));
+}
 
+    
     public function create()
     {
         return view('riwayat-transaksi.create');
@@ -27,21 +23,21 @@ class RiwayatTransaksiController extends Controller
 
     public function store(Request $request)
     {
-        // Menyimpan riwayat transaksi
-    }
+        
+        $validatedData = $request->validate([
+            'peminjaman_id' => 'required|exists:peminjamans,id',
+            'status' => 'required|string',
+        ]);
 
-    public function show($id)
-    {
-        // Menampilkan detail transaksi
-    }
+        // Menyimpan data riwayat transaksi
+        RiwayatTransaksi::create([
+            'peminjaman_id' => $validatedData['peminjaman_id'],
+            'status' => $validatedData['status'],
+        ]);
 
-    public function edit($id)
-    {
-        // Mengedit transaksi
+        
+        return redirect()->route('riwayat.index')->with('success', 'Riwayat transaksi berhasil disimpan!');
     }
-
-    public function destroy($id)
-    {
-        // Menghapus transaksi
-    }
+    
 }
+

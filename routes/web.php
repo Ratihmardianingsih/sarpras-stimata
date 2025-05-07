@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\InformasiController;
 
 
 /*
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 });
 
     
@@ -56,10 +58,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/ruangan/{ruangan}', [RuanganController::class, 'update'])->name('ruangan.update');
         Route::delete('/ruangan/{id}', [RuanganController::class, 'destroy'])->name('ruangan.destroy');
 
-        Route::get('/peminjaman/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');
+        Route::middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('/data-peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');});
+
+        Route::middleware(['auth', 'role:peminjam'])->group(function () {
+        Route::get('/pinjam-ruangan', [PeminjamanController::class, 'index'])->name('pinjamruangan.index');
+        Route::get('/pinjam-ruangan/create', [PeminjamanController::class, 'createPinjam'])->name('pinjamruangan.create');});
         Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
-        Route::get('/data-peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
-        
+        Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+
+        Route::post('/peminjaman/{id}/terima', [PeminjamanController::class, 'terima'])->name('peminjaman.terima');
+        Route::post('/peminjaman/{id}/tolak', [PeminjamanController::class, 'tolak'])->name('peminjaman.tolak');
+
+        Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');
+
         Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
         Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
         Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');

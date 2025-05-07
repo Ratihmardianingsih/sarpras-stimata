@@ -14,11 +14,19 @@ class Ruangan extends Model
 
 
     // Menambahkan atribut yang bisa diisi secara massal
-    protected $fillable = [
-        'nama_kategori','kode_kategori', 'nama_ruangan', 'kapasitas', 'lokasi',
-    ];
+        protected $fillable = [
+            'kode_kategori', 'nama_ruangan', 'kapasitas', 'deskripsi', 'lokasi',
+        ];
+        
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'kode_kategori', 'kode_kategori');
     }
+
+    // Model Ruangan
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
+
 }

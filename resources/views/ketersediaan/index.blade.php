@@ -8,6 +8,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>No</th>
+                        <th>Kode Kategori</th>
                         <th>Nama Ruangan</th>
                         <th>Kapasitas</th>
                         <th>Lokasi</th>
@@ -17,6 +19,8 @@
                 <tbody>
                     @foreach($ruangans as $ruangan)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $ruangan->kode_kategori }}</td>
                             <td>{{ $ruangan->nama_ruangan }}</td>
                             <td>{{ $ruangan->kapasitas }}</td>
                             <td>{{ $ruangan->lokasi }}</td>

@@ -22,6 +22,7 @@
                     <th>Nama Kategori</th>
                     <th>Nama Ruangan</th>
                     <th>Kapasitas</th>
+                    <th>Deskripsi</th>
                     <th>Lokasi</th>
                     <th>Aksi</th>
                 </tr>
@@ -32,9 +33,10 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td> <!-- Menampilkan urutan no -->
                         <td>{{ $ruangan->kode_kategori }}</td>
-                        <td>{{ $ruangan->kategori ? $ruangan->kategori->deskripsi : 'Deskripsi Tidak Tersedia' }}</td>
+                        <td>{{ $ruangan->kategori ? $ruangan->kategori->nama_kategori : 'Nama Kategori Tidak Tersedia' }}</td> <!-- Menampilkan Nama Kategori -->
                         <td>{{ $ruangan->nama_ruangan }}</td>
                         <td>{{ $ruangan->kapasitas }}</td>
+                        <td>{{ $ruangan->deskripsi }}</td>
                         <td>{{ $ruangan->lokasi }}</td>
                         <td>
                             <!-- Edit button -->
