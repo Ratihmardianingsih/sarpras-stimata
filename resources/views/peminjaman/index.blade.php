@@ -13,6 +13,8 @@
                     <th>Nama Ruangan</th>
                     <th>Kapasitas</th>
                     <th>Tanggal Pinjam</th>
+                    <th>Waktu Mulai</th>
+                    <th>Waktu Selesai</th>
                     <th>Keterangan</th>
                     <th>Aksi</th> <!-- Aksi untuk admin -->
                 </tr>
@@ -26,6 +28,8 @@
                         <td>{{ $pinjam->ruangan->nama_ruangan }}</td>
                         <td>{{ $pinjam->kapasitas }}</td>
                         <td>{{ $pinjam->tanggal_pinjam }}</td>
+                        <td>{{ $pinjam->waktu_mulai }}</td>
+                        <td>{{ $pinjam->waktu_selesai }}</td>
                         <td>{{ $pinjam->keterangan }}</td>
                         <td>
                             <!-- Form untuk menerima peminjaman -->
@@ -40,9 +44,8 @@
                                 <button type="submit" class="btn btn-danger">Tolak</button>
                             </form>
                         </td>
-
                         </td>
-                    </tr>
+                    </tr>             
                 @endforeach
             </tbody>
         </table>

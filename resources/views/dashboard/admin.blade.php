@@ -31,7 +31,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Total Peminjam Ruangan</h5>
-                    <p class="card-text">Ini bingung untuk apa?</p>
+                    <p class="card-text">{{ $totalruanganProses }}</p>
                 </div>
             </div>
         </div>

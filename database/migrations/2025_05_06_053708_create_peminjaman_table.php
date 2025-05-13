@@ -20,6 +20,8 @@ class CreatePeminjamanTable extends Migration
             $table->string('kode_kategori'); // Kode Kategori
             $table->integer('kapasitas'); // Kapasitas
             $table->date('tanggal_pinjam'); // Tanggal pinjam
+            $table->time('waktu_mulai')->nullable();
+            $table->time('waktu_selesai')->nullable();
             $table->text('keterangan')->nullable(); // Keterangan
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Status peminjaman
             $table->timestamps(); // Timestamps created_at & updated_at

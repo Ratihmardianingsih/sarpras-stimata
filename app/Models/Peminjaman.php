@@ -13,7 +13,7 @@ class Peminjaman extends Model
 
     protected $fillable = [
         'user_id', 'ruangan_id', 'kode_kategori', 'kapasitas', 
-        'tanggal_pinjam', 'keterangan', 'status'
+        'tanggal_pinjam', 'waktu_mulai', 'waktu_selesai', 'keterangan', 'status'
     ];
 
     // Relasi dengan pengguna (user)

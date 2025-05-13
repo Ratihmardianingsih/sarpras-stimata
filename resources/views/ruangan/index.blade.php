@@ -7,6 +7,10 @@
         <!-- Button Tambah Ruangan -->
         <a href="{{ route('ruangan.create') }}" class="btn btn-primary mb-3">Tambah Ruangan</a>
 
+        <!-- Button Export -->
+        <a href="{{ route('ruangan.export.pdf') }}" class="btn btn-danger mb-3">Export PDF</a>
+        <a href="{{ route('ruangan.export.excel') }}" class="btn btn-success mb-3">Export Excel</a>
+
                 @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

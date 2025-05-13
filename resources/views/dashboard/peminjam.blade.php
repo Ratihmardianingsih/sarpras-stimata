@@ -6,8 +6,8 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Ruangan</h5>
-                    <!-- Menampilkan total ruangan -->
+                    <h5 class="card-title">Total Ruangan Admin</h5> 
+                    <p class="card-text">{{ $totalRuangan }}</p>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Total Ketersediaan Ruangan</h5>
-                    </p> <!-- Data ketersediaan ruangan -->
+                    <p class="card-text">{{ $ruanganTersedia }}</p>
                 </div>
             </div>
         </div>
@@ -27,13 +27,4 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Informasi</h5>
-                    <p class="card-text">Ini bingung untuk apa?</p>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection

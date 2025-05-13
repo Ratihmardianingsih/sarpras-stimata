@@ -40,7 +40,17 @@
            <!-- Tanggal dan Waktu Pinjam -->
             <div class="mb-3">
                 <label for="tanggal_peminjaman" class="form-label">Tanggal dan Waktu Pinjam</label>
-                <input type="datetime-local" class="form-control" id="tanggal_peminjaman" name="tanggal_peminjaman" value="{{ old('tanggal_peminjaman') }}" required>
+                <input type="date" class="form-control" id="tanggal_peminjaman" name="tanggal_peminjaman" value="{{ old('tanggal_peminjaman') }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="waktu_mulai">Waktu Mulai</label>
+                <input type="time" id="waktu_mulai" name="waktu_mulai" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="waktu_selesai">Waktu Selesai</label>
+                <input type="time" id="waktu_selesai" name="waktu_selesai" required>
             </div>
 
             <!-- Keterangan -->

@@ -38,6 +38,6 @@ class RiwayatTransaksiController extends Controller
         
         return redirect()->route('riwayat.index')->with('success', 'Riwayat transaksi berhasil disimpan!');
     }
-    
+
 }
 

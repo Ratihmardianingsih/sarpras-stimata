@@ -79,6 +79,11 @@
 
                         @if(auth()->user()->role == 'peminjam') <!-- Sidebar untuk Peminjam -->
                         <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('/informasi') }}">
+                                            <i class></i> Informasi
+                                        </a>
+                                    </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#peminjamanDropdown" aria-expanded="false" aria-controls="peminjamanDropdown">
                                 <i class="fas fa-calendar-check"></i> Peminjaman Ruangan
                             </a>
@@ -91,11 +96,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/informasi') }}">
-                                            <i class></i> Informasi
-                                        </a>
-                                    </li>
                         </li>
                     @endif
 

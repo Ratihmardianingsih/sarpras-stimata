@@ -13,6 +13,10 @@ use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\InformasiController;
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RuanganExport;
+
 
 
 /*
@@ -66,6 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/pinjam-ruangan/create', [PeminjamanController::class, 'createPinjam'])->name('pinjamruangan.create');});
         Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
         Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+        Route::post('/pinjam-ruangan/kembalikan/{id}', [PeminjamanController::class, 'kembalikan'])->name('pinjamruangan.kembalikan');
 
         Route::post('/peminjaman/{id}/terima', [PeminjamanController::class, 'terima'])->name('peminjaman.terima');
         Route::post('/peminjaman/{id}/tolak', [PeminjamanController::class, 'tolak'])->name('peminjaman.tolak');
@@ -82,7 +87,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/riwayat-transaksi', [RiwayatTransaksiController::class, 'index'])->name('riwayat-transaksi.index');
         Route::resource('riwayat-transaksi', RiwayatTransaksiController::class);
+        Route::get('/riwayat-transaksi', [PeminjamanController::class, 'riwayatTransaksi'])->name('riwayat.transaksi');
 
+        Route::get('/ruangan/export/pdf', [RuanganController::class, 'exportPDF'])->name('ruangan.export.pdf');
+        Route::get('/ruangan/export/excel', [RuanganController::class, 'exportExcel'])->name('ruangan.export.excel');
 
         // Rute untuk logout
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

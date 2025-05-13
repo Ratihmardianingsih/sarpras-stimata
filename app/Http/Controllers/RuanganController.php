@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
 use Illuminate\Http\Request; 
-use App\Models\Kategori; // Ini yang benar untuk mengakses model Kategori
+use App\Models\Kategori;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RuanganExport;
 
 
 
@@ -110,6 +112,15 @@ public function destroy($id)
     // Redirect setelah berhasil menghapus
     return redirect()->route('ruangan.index')->with('success', 'Ruangan berhasil dihapus');
 }
-
+public function exportPDF()
+{
+    $ruangans = Ruangan::all();
+    $pdf = PDF::loadView('ruangan.export_pdf', compact('ruangans'));
+    return $pdf->download('ruangan.pdf');
+}
+public function exportExcel()
+{
+    return Excel::download(new RuanganExport, 'ruangan.xlsx');
+}
 }
     

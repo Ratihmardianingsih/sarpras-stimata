@@ -15,8 +15,11 @@
                     <th>Nama Ruangan</th>
                     <th>Kapasitas</th>
                     <th>Tanggal Pinjam</th>
+                    <th>Waktu Mulai</th>
+                    <th>Waktu Selesai</th>
                     <th>Keterangan</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,8 +31,17 @@
                         <td>{{ $pinjam->ruangan->nama_ruangan }}</td>
                         <td>{{ $pinjam->kapasitas }}</td>
                         <td>{{ $pinjam->tanggal_pinjam }}</td>
+                        <td>{{ $pinjam->waktu_mulai }}</td>
+                        <td>{{ $pinjam->waktu_selesai }}</td>
                         <td>{{ $pinjam->keterangan }}</td>
                         <td>{{ $pinjam->status }}</td>
+                        <td>
+                            <!-- Form untuk mengembalikan peminjaman -->
+                            <form action="{{ route('pinjamruangan.kembalikan', $pinjam->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-warning">Kembalikan</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -15,7 +15,6 @@ class PeminjamanController extends Controller
        
             $peminjaman = Peminjaman::where('status', 'Menunggu')->get();
 
-            // dd($peminjaman);
             return view('peminjaman.index', compact('peminjaman'));  
         } else {
             // Untuk peminjam, tampilkan data peminjamannya sendiri
@@ -28,7 +27,9 @@ class PeminjamanController extends Controller
     public function createPinjam()
     {
         // Ambil data ruangan yang tersedia
-        $ruangans = Ruangan::all();
+        $ruangans = Ruangan::where('status_ketersediaan', 'Tersedia')->get();
+
+        // $ruangans = Ruangan::all();
         return view('pinjamruangan.create', compact('ruangans'));
     }
 
@@ -36,9 +37,12 @@ class PeminjamanController extends Controller
     
     public function store(Request $request)
     {
+        
         $validatedData = $request->validate([
             'kode_ruangan' => 'required|exists:ruangans,id',
             'tanggal_peminjaman' => 'required|date',
+            'waktu_mulai' => 'required|date_format:H:i',
+            'waktu_selesai' => 'required|date_format:H:i',
             'keterangan' => 'nullable|string',
         ]);
     
@@ -48,6 +52,8 @@ class PeminjamanController extends Controller
             'kode_kategori' => $request->kode_kategori,
             'kapasitas' => $request->kapasitas,
             'tanggal_pinjam' => $request->tanggal_peminjaman,
+            'waktu_mulai' => $request->waktu_mulai,
+            'waktu_selesai' => $request->waktu_selesai,
             'status' => 'Menunggu',
             'keterangan' => $request->keterangan,
         ]);
@@ -60,6 +66,10 @@ class PeminjamanController extends Controller
     $peminjaman = Peminjaman::findOrFail($id);
     $peminjaman->status = 'Diterima';
     $peminjaman->save();
+
+    $ruangan = Ruangan::find($peminjaman->ruangan_id);
+    $ruangan->status_ketersediaan = 'Tidak Tersedia';
+    $ruangan->save();
 
     RiwayatTransaksi::create([
         'peminjaman_id' => $peminjaman->id,
@@ -82,5 +92,37 @@ class PeminjamanController extends Controller
     
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman ditolak');
     }
+    public function riwayatTransaksi(Request $request)
+    {
+        $query = RiwayatTransaksi::with('peminjaman');
+    
+        // Filter berdasarkan tanggal mulai dan tanggal selesai
+        if ($request->has('tanggal_mulai') && $request->has('tanggal_selesai')) {
+            $tanggalMulai = $request->input('tanggal_mulai');
+            $tanggalSelesai = $request->input('tanggal_selesai');
+    
+            $query->whereHas('peminjaman', function ($query) use ($tanggalMulai, $tanggalSelesai) {
+                $query->whereBetween('tanggal_pinjam', [$tanggalMulai, $tanggalSelesai]);
+            });
+        }
+    
+        $riwayat = $query->get();
+    
+        return view('riwayat-transaksi.index', compact('riwayat'));
+    }
+    public function kembalikan($id)
+{
+        $pinjam = Peminjaman::findOrFail($id);
+
+        $pinjam->status = 'Dikembalikan';  // Atau sesuai status yang diinginkan
+        $pinjam->aksi = 'Dikembalikan';  // Menandai bahwa peminjaman telah dikembalikan
+        $pinjam->save();
+
+        $ruangan = Ruangan::findOrFail($pinjam->ruangan_id);
+            $ruangan->status_ketersediaan = 'Tersedia';
+            $ruangan->save();
+
+        return redirect()->route('pinjamruangan.index')->with('success', 'Ruangan telah dikembalikan');
+}
 
 }
