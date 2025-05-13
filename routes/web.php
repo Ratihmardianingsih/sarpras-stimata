@@ -19,6 +19,7 @@ use App\Exports\RuanganExport;
 
 
 
+
 /*
 |----------------------------------------------------------------------
 | Web Routes
@@ -92,6 +93,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/ruangan/export/pdf', [RuanganController::class, 'exportPDF'])->name('ruangan.export.pdf');
         Route::get('/ruangan/export/excel', [RuanganController::class, 'exportExcel'])->name('ruangan.export.excel');
 
+        Route::get('/peminjaman/export/pdf', [PeminjamanController::class, 'exportPDF'])->name('peminjaman.exportPDF');
+        Route::get('/peminjaman/export/excel', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.exportExcel');
         // Rute untuk logout
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     });

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Kategori;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RuanganExport;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 

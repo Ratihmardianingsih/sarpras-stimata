@@ -6,6 +6,12 @@
 
         <a href="{{ route('pinjamruangan.create') }}" class="btn btn-primary mb-3">Pinjam Ruangan</a>
 
+         @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr>

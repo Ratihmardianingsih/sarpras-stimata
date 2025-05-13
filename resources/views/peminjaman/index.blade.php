@@ -4,6 +4,12 @@
     <div class="container mt-5">
         <h1 class="mb-4">Data Peminjaman</h1>
 
+         <!-- Tombol Export PDF dan Excel -->
+        <div class="mb-3">
+            <a href="{{ route('peminjaman.exportPDF') }}" class="btn btn-primary">Export PDF</a>
+            <a href="{{ route('peminjaman.exportExcel') }}" class="btn btn-success">Export Excel</a>
+        </div>
+        
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr>
