@@ -51,7 +51,8 @@
                             </form>
                         </td>
                         </td>
-                    </tr>             
+                    </tr> 
+                                
                 @endforeach
             </tbody>
         </table>

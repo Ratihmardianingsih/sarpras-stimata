@@ -6,9 +6,10 @@ use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use App\Models\Peminjaman;
 use App\Models\RiwayatTransaksi;
+use App\Exports\PeminjamanExport;
 use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\PeminjamanExport;
+use App\Http\Controllers\LaporanController;
 
 class PeminjamanController extends Controller
 {
@@ -113,19 +114,30 @@ class PeminjamanController extends Controller
     
         return view('riwayat-transaksi.index', compact('riwayat'));
     }
-    public function kembalikan($id)
+   public function kembalikan($id)
 {
-        $pinjam = Peminjaman::findOrFail($id);
+   
+    $pinjam = Peminjaman::findOrFail($id);
+    $pinjam->status = 'Dikembalikan';
+    $pinjam->save();
 
-        $pinjam->status = 'Dikembalikan';  // Atau sesuai status yang diinginkan
-        $pinjam->aksi = 'Dikembalikan';  // Menandai bahwa peminjaman telah dikembalikan
-        $pinjam->save();
+    \App\Models\Laporan::create([
+        'kode_kategori' => $pinjam->kode_kategori,
+        'kapasitas' => $pinjam->kapasitas,
+        'tanggal_pinjam' => $pinjam->tanggal_pinjam,
+        'waktu_mulai' => $pinjam->waktu_mulai,
+        'waktu_selesai' => $pinjam->waktu_selesai,
+        'keterangan' => $pinjam->keterangan,
+        'status' => 'Dikembalikan',
+        'user_id' => $pinjam->user_id,
+        'ruangan_id' => $pinjam->ruangan_id
+    ]);
 
-        $ruangan = Ruangan::findOrFail($pinjam->ruangan_id);
-            $ruangan->status_ketersediaan = 'Tersedia';
-            $ruangan->save();
+    $ruangan = Ruangan::findOrFail($pinjam->ruangan_id);
+    $ruangan->status_ketersediaan = 'Tersedia';
+    $ruangan->save();
 
-        return redirect()->route('pinjamruangan.index')->with('success', 'Ruangan telah dikembalikan');
+    return redirect()->route('pinjamruangan.index')->with('success', 'Ruangan telah dikembalikan dan masuk laporan');
 }
     public function exportPDF()
 {

@@ -16,6 +16,7 @@ use App\Http\Controllers\InformasiController;
 use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RuanganExport;
+use App\Http\Controllers\LaporanController;
 
 
 
@@ -95,6 +96,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/peminjaman/export/pdf', [PeminjamanController::class, 'exportPDF'])->name('peminjaman.exportPDF');
         Route::get('/peminjaman/export/excel', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.exportExcel');
+
+        Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
         // Rute untuk logout
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     });
