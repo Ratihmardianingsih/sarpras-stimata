@@ -29,10 +29,12 @@ class DashboardController extends Controller
             // Untuk peminjam, tampilkan dashboard peminjam
             $totalRuangan = Ruangan::count();  // Total jumlah ruangan
             $ruanganTersedia = Ruangan::where('status_ketersediaan', 'tersedia')->count();
+            $diProses = Peminjaman::where('status', 'Menunggu')->count();
 
             return view('dashboard.peminjam', compact(
                'totalRuangan', 
                 'ruanganTersedia', 
+                'diProses',
             ));
         }
     }

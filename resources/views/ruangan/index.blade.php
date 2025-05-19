@@ -1,27 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1 class="my-4">Daftar Ruangan</h1>
+    <div class="main-content">
+        <!-- Header -->
+        <header>
+            <div>
+                <h1>DAFTAR RUANGAN</h1>
+                <p>Menampilkan daftar ruangan yang tersedia</p>
+            </div>
+           <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                 @csrf 
+            <button class="logout-btn">Logout</button>
+</form>
+        </header>
 
         <!-- Button Tambah Ruangan -->
-        <a href="{{ route('ruangan.create') }}" class="btn btn-primary mb-3">Tambah Ruangan</a>
+        <a href="{{ route('ruangan.create') }}" class="add-room-btn">Tambah Ruangan</a>
 
-        <!-- Button Export -->
-        <a href="{{ route('ruangan.export.pdf') }}" class="btn btn-danger mb-3">Export PDF</a>
-        <a href="{{ route('ruangan.export.excel') }}" class="btn btn-success mb-3">Export Excel</a>
-
-                @if(session('success'))
-            <div class="alert alert-success">
+        <!-- Menampilkan Pesan Sukses -->
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-                @endif
+        @endif
 
         <!-- Daftar Ruangan -->
-        <table class="table table-bordered">
+        <table class="category-table">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th>NO</th>
                     <th>Kode Kategori</th>
                     <th>Nama Kategori</th>
                     <th>Nama Ruangan</th>
@@ -44,18 +52,22 @@
                         <td>{{ $ruangan->lokasi }}</td>
                         <td>
                             <!-- Edit button -->
-                            <a href="{{ route('ruangan.edit', $ruangan->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('ruangan.edit', $ruangan->id) }}" class="edit-btn">EDIT</a>
 
                             <!-- Hapus button -->
-                            <form action="{{ route('ruangan.destroy', $ruangan->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus ruangan?');">
+                            <form action="{{ route('ruangan.destroy', $ruangan->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori?');">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                @method('DELETE') <!-- Menambahkan metode DELETE -->
+                                <button type="submit" class="delete-btn">HAPUS</button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
+        <footer>
+            <p>Copyright @Stimata2025</p>
+        </footer>
     </div>
 @endsection

@@ -1,35 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        <h1 class="mb-4">Pinjam Ruang</h1>
+    <div class="main-content1">
+    <header>
+        <div>
+            <h1>PINJAM RUANGAN</h1>
+        </div>
+       <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                 @csrf 
+            <button class="logout-btn">Logout</button>
+        </form>
+    </header>
 
-        <a href="{{ route('pinjamruangan.create') }}" class="btn btn-primary mb-3">Pinjam Ruangan</a>
-
-         @if(session('success'))
-            <div class="alert alert-success">
+     <a href="{{ route('pinjamruangan.create') }}" class="btn btn-primary mb-3">Pinjam Ruangan</a>
+   @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-
-        <table class="table table-bordered">
-            <thead class="table-light">
-                <tr>
-                    <th>No</th>
-                    <th>Kode Kategori</th>
-                    <th>Peminjam</th>
-                    <th>Nama Ruangan</th>
-                    <th>Kapasitas</th>
-                    <th>Tanggal Pinjam</th>
-                    <th>Waktu Mulai</th>
-                    <th>Waktu Selesai</th>
-                    <th>Keterangan</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($peminjaman as $pinjam)
+    <!-- Tabel Pinjam Ruangan -->
+    <table class="category-table">
+        <thead>
+            <tr>
+                <th>NO</th>
+                <th>Kode Kategori</th>
+                <th>Peminjam</th>
+                <th>Nama Ruangan</th>
+                <th>Kapasitas</th>
+                <th>Tanggal Pinjam</th>
+                <th>Waktu Mulai</th>
+                <th>Waktu Selesai</th>
+                <th>Keterangan</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($peminjaman as $pinjam)
+                @if($pinjam->status != 'Dikembalikan')
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $pinjam->kode_kategori }}</td>
@@ -49,8 +58,8 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-@endsection
+                @endif
+            @endforeach
+        </tbody>
+    </table>
+</div>

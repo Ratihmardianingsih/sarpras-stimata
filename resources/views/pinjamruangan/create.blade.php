@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        <h1 class="mb-4">Form Pinjam Ruang</h1>
+    <div class="main-content">
+                <header>
+            <div>
+                <h1>Form Pinjam Ruangan</h1>
+            </div>
+            <button class="logout-btn">Logout</button>
+        </header>
+
 
         <!-- Form Peminjaman -->
-        <form action="{{ route('peminjaman.store') }}" method="POST">
+        <form action="{{ route('peminjaman.store') }}" method="POST" class="add-room-form">
             @csrf
 
              <!-- Nama Ruangan -->
@@ -62,7 +68,9 @@
             <button type="submit" class="btn btn-primary">Ajukan Peminjaman</button>
         </form>
     </div>
-
+ <footer>
+            <p>Copyright @Stimata2025</p>
+        </footer>
     <!-- JavaScript untuk mengupdate Kode Kategori dan Kapasitas -->
     <script>
         document.getElementById('kode_ruangan').addEventListener('change', function() {
@@ -75,4 +83,5 @@
             document.getElementById('kapasitas').value = kapasitas;
         });
     </script>
+    </div>
 @endsection

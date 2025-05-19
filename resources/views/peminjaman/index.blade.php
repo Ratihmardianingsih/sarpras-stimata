@@ -1,19 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        <h1 class="mb-4">Data Peminjaman</h1>
+    <div class="main-content">
+        <header>
+            <div>
+                <h1>DATA PEMINJAM</h1>
+                <p>Menampilkan data peminjam ruangan</p>
+            </div>
+           <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+            @csrf <!-- Menambahkan CSRF token untuk keamanan -->
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+        </header>
 
-         <!-- Tombol Export PDF dan Excel -->
-        <div class="mb-3">
-            <a href="{{ route('peminjaman.exportPDF') }}" class="btn btn-primary">Export PDF</a>
-            <a href="{{ route('peminjaman.exportExcel') }}" class="btn btn-success">Export Excel</a>
-        </div>
-        
-        <table class="table table-bordered">
-            <thead class="table-light">
+        <!-- Daftar Data Peminjam -->
+        <table class="category-table">
+            <thead>
                 <tr>
-                    <th>No</th>               
+                    <th>NO</th>
                     <th>Kode Kategori</th>
                     <th>Peminjam</th>
                     <th>Nama Ruangan</th>
@@ -22,7 +26,8 @@
                     <th>Waktu Mulai</th>
                     <th>Waktu Selesai</th>
                     <th>Keterangan</th>
-                    <th>Aksi</th> <!-- Aksi untuk admin -->
+                    <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,24 +42,27 @@
                         <td>{{ $pinjam->waktu_mulai }}</td>
                         <td>{{ $pinjam->waktu_selesai }}</td>
                         <td>{{ $pinjam->keterangan }}</td>
+                        <td>{{ $pinjam->status }}</td>
                         <td>
                             <!-- Form untuk menerima peminjaman -->
                             <form action="{{ route('peminjaman.terima', $pinjam->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                                <button type="submit" class="btn btn-success">Terima</button>
+                                <button type="submit" class="approve-btn">Terima</button>
                             </form>
 
                             <!-- Form untuk menolak peminjaman -->
                             <form action="{{ route('peminjaman.tolak', $pinjam->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                                <button type="submit" class="btn btn-danger">Tolak</button>
+                                <button type="submit" class="reject-btn">Tolak</button>
                             </form>
                         </td>
-                        </td>
                     </tr> 
-                                
                 @endforeach
             </tbody>
         </table>
+
+        <footer>
+            <p>Copyright @Stimata2025</p>
+        </footer>
     </div>
 @endsection

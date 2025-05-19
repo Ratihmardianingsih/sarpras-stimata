@@ -1,31 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1 class="my-4">Riwayat Transaksi</h1>
-
-         <!-- Form Filter berdasarkan Tanggal -->
-         <form action="{{ route('riwayat.transaksi') }}" method="GET">
-            <div class="form-row">
-                <div class="col-md-3">
-                    <label for="tanggal_mulai">Tanggal Mulai</label>
-                    <input type="date" class="form-control" name="tanggal_mulai" value="{{ request('tanggal_mulai') }}">
-                </div>
-                <div class="col-md-3">
-                    <label for="tanggal_selesai">Tanggal Selesai</label>
-                    <input type="date" class="form-control" name="tanggal_selesai" value="{{ request('tanggal_selesai') }}">
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary mt-4">Filter</button>
-                </div>
+    <div class="main-content">
+        <header>
+            <div>
+                <h1>LAPORAN</h1>
+                <p>Menampilkan laporan ketersediaan ruangan</p>
             </div>
+             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+            @csrf <!-- Menambahkan CSRF token untuk keamanan -->
+            <button type="submit" class="logout-btn">Logout</button>
         </form>
+        </header>
 
-        <!-- Tabel Riwayat Transaksi -->
-        <table class="table table-bordered">
+        <!-- Button Export -->
+        <div class="export-btns">
+            <a href="{{ route('riwayat.export.pdf') }}" class="export-btn">Export PDF</a>
+            <a href="{{ route('riwayat.export.excel') }}" class="export-btn">Export Excel</a>
+        </div>
+
+        <!-- Filter -->
+        <div class="filter">
+            <form action="{{ route('riwayat.transaksi') }}" method="GET">
+                <input type="date" name="tanggal_mulai" placeholder="Tanggal mulai" value="{{ request('tanggal_mulai') }}">
+                <input type="date" name="tanggal_selesai" placeholder="Tanggal selesai" value="{{ request('tanggal_selesai') }}">
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <!-- Daftar Laporan -->
+        <table class="category-table">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th>NO</th>
                     <th>Kode Kategori</th>
                     <th>Peminjam</th>
                     <th>Nama Ruangan</th>
@@ -54,5 +61,9 @@
                 @endforeach
             </tbody>
         </table>
+
+        <footer>
+            <p>Copyright @Stimata2025</p>
+        </footer>
     </div>
 @endsection

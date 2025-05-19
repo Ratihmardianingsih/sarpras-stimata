@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pinjam Ruangan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            background-color: #FFBC5B;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #FFB85D;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar .logo img {
+            width: 100px;
+            margin-bottom: 40px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .sidebar ul li a:hover {
+            color: #FF6F00;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+            background-color: white;
+            flex: 1;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FFB85D;
+            padding: 15px 25px;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .logout-btn {
+            background-color: #FF6F00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #e65c00;
+        }
+
+        /* Form Pinjam Ruangan */
+        .add-room-form {
+            background-color: #FFF3E0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-left: 15px;
+        }
+
+        .add-room-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .add-room-form label {
+            font-weight: bold;
+        }
+
+        .add-room-form input,
+        .add-room-form select,
+        .add-room-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .add-room-form button {
+            background-color: #FF6F00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .add-room-form button:hover {
+            background-color: #e65c00;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo"> <!-- Ganti dengan logo yang sesuai -->
+        </div>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Data Ruangan</a></li>
+            <li><a href="#">Kategori Ruangan</a></li>
+            <li><a href="#">Ketersediaan Ruangan</a></li>
+            <li><a href="#">Ketersediaan Laporan</a></li>
+            <li><a href="#">Data Peminjam</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div>
+                <h1>Form Pinjam Ruangan</h1>
+            </div>
+            <button class="logout-btn">Logout</button>
+        </header>
+
+        <!-- Form Pinjam Ruangan -->
+        <form action="{{ route('pinjamruangan.store') }}" method="POST" class="add-room-form">
+            @csrf
+            <div class="form-group">
+                <label for="nama_peminjam">Nama Peminjam</label>
+                <input type="text" id="nama_peminjam" name="nama_peminjam" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="kode_kategori">Kode Kategori</label>
+                <select id="kode_kategori" name="kode_kategori" class="form-control" required>
+                    <option value="KD-RK-01">KD-RK-01</option>
+                    <option value="KD-RK-02">KD-RK-02</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="kapasitas">Kapasitas Ruangan</label>
+                <input type="number" id="kapasitas" name="kapasitas" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="tanggal_pinjam">Tanggal Pinjam</label>
+                <input type="date" id="tanggal_pinjam" name="tanggal_pinjam" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="waktu_mulai">Waktu Mulai</label>
+                <input type="time" id="waktu_mulai" name="waktu_mulai" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="waktu_selesai">Waktu Selesai</label>
+                <input type="time" id="waktu_selesai" name="waktu_selesai" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="keterangan">Keterangan</label>
+                <textarea id="keterangan" name="keterangan" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajukan Pinjaman</button>
+        </form>
+
+        <footer>
+            <p>Copyright @Stimata2025</p>
+        </footer>
+    </div>
+    
+</body>
+</html>

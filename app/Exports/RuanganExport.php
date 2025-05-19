@@ -6,6 +6,7 @@ use App\Models\Ruangan;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 
+
 class RuanganExport implements FromCollection
 {
     /**

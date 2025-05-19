@@ -1,30 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Selamat Datang, Peminjam</h1>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Ruangan Admin</h5> 
-                    <p class="card-text">{{ $totalRuangan }}</p>
-                </div>
+    <div class="main-content">
+        <header>
+            <div>
+                <h1>DASHBOARD</h1>
+                <p>Selamat Datang, Peminjam</p>
+            </div>
+             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                 @csrf 
+            <button class="logout-btn">Logout</button>
+        </header>
+
+        <div class="table-container">
+        <div class="card-stat-container">
+            <div class="card-stat">
+                <h3>{{ $totalRuangan }}</h3>
+                <p>Total Ruangan Admin</p>
+            </div>
+            <div class="card-stat">
+                <h3>{{ $ruanganTersedia }}</h3>
+                <p>Total Ketersediaan Ruangan</p>
+            </div>
+            <div class="card-stat">
+                <h3>{{ $diProses }}</h3>
+                <p>Dalam Proses</p>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Ketersediaan Ruangan</h5>
-                    <p class="card-text">{{ $ruanganTersedia }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Ruangan Dipinjam</h5>
-                  </p>
-                </div>
-            </div>
-        </div>
+
+        <footer>
+            <p>Copyright @Stimata2025</p>
+        </footer>
+    </div>
+</div>
+
 @endsection

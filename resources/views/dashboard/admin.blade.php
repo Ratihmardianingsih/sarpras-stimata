@@ -1,39 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Selamat Datang, Admin {{ auth()->user()->name }} 👋</h1>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Ruangan</h5>
-                    <p class="card-text">{{ $totalRuangan }}</p> <!-- Menampilkan total ruangan -->
-                </div>
+    <div class="main-content">
+        <!-- Header -->
+        <header>
+            <div>
+                <h1>DASHBOARD</h1>
+                <p>Selamat Datang! Admin {{ auth()->user()->name }} 👋</p>
+            </div>
+                <!-- Form logout dengan metode POST -->
+                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                 @csrf 
+            <button class="logout-btn">Logout</button>
+        </header>
+      
+        <div class="table-container">
+        <!-- Card Stats -->
+        <div class="card-stat-container">
+            <div class="card-stat">
+                <h3>{{ $totalRuangan }}</h3>
+                <p>Total Ruangan</p>
+            </div>
+            <div class="card-stat">
+                <h3>{{ $ruanganDipinjam }}</h3>
+                <p>Total Ruangan Dipinjam</p>
+            </div>
+            <div class="card-stat">
+                <h3>{{ $ruanganTersedia }}</h3>
+                <p>Total Ketersediaan Ruangan</p>
+            </div>
+            <div class="card-stat">
+                <h3>{{ $totalruanganProses }}</h3>
+                <p>Total Peminjam</p>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Ketersediaan Ruangan</h5>
-                    <p class="card-text">{{ $ruanganTersedia }}</p> <!-- Menampilkan total ketersediaan ruangan -->
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Ruangan Dipinjam</h5>
-                    <p class="card-text">{{ $ruanganDipinjam }}</p> <!-- Menampilkan total ruangan dipinjam -->
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Peminjam Ruangan</h5>
-                    <p class="card-text">{{ $totalruanganProses }}</p>
-                </div>
-            </div>
-        </div>
+     
+
+        <!-- Footer -->
+        <footer>
+            <p>Copyright @Stimata2025</p>
+        </footer>
+</div>
     </div>
 @endsection

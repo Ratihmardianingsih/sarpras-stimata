@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: #FFBC5B;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #FFB85D;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo img {
+    width: 100px;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+    color: #FF6F00;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 260px;
+    padding: 20px;
+    background-color: white;
+    flex: 1;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFB85D;
+    padding: 15px 25px;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Tombol Logout */
+.logout-btn {
+    background-color: #FF6F00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #e65c00;
+}
+
+/* Tabel Pinjam Ruangan */
+.category-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.category-table th,
+.category-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.category-table th {
+    background-color: #FFB85D;
+    color: white;
+}
+
+.category-table td {
+    background-color: #FFF3E0;
+}
+
+/* Tombol Aksi */
+.btn {
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-warning {
+    background-color: #FF6F00;
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: #e65c00;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #999;
+}
+</style>
+<div class="main-content">
+    <header>
+        <div>
+            <h1>PINJAM RUANGAN</h1>
+        </div>
+        <button class="logout-btn">Logout</button>
+    </header>
+
+    <!-- Tabel Pinjam Ruangan -->
+    <table class="category-table">
+        <thead>
+            <tr>
+                <th>NO</th>
+                <th>Kode Kategori</th>
+                <th>Peminjam</th>
+                <th>Nama Ruangan</th>
+                <th>Kapasitas</th>
+                <th>Tanggal Pinjam</th>
+                <th>Waktu Mulai</th>
+                <th>Waktu Selesai</th>
+                <th>Keterangan</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>KD-RK-01</td>
+                <td>Revani</td>
+                <td>Ruang Kelas A. 3.1</td>
+                <td>45</td>
+                <td>2025-05-14</td>
+                <td>21:31</td>
+                <td>21:40</td>
+                <td>Untuk Clan</td>
+                <td>Diterima</td>
+                <td>
+                    <button class="btn btn-warning">Kembalikan</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>KD-RK-02</td>
+                <td>Amanda</td>
+                <td>Ruang Kelas A. 3.2</td>
+                <td>45</td>
+                <td>2025-05-14</td>
+                <td>21:31</td>
+                <td>21:40</td>
+                <td>Untuk Indis</td>
+                <td>Diterima</td>
+                <td>
+                    <button class="btn btn-warning">Kembalikan</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <footer>
+        <p>Copyright @Stimata2025</p>
+    </footer>
+</div>

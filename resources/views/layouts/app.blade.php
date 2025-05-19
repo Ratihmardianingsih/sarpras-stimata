@@ -12,7 +12,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
+     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -29,80 +29,43 @@
                             </a>
                         </li>
 
-                        @if(auth()->user()->role == 'admin') <!-- Sidebar untuk Admin -->
-                            <!-- Data Ruangan Dropdown -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#dataRuanganDropdown" aria-expanded="false" aria-controls="dataRuanganDropdown">
-                                    <i class="fas fa-cogs"></i> Data Ruangan
-                                </a>
-                                <div class="collapse" id="dataRuanganDropdown">
-                                    <ul class="nav flex-column ms-3">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ url('/kategori') }}">
-                                                <i class="fas fa-th-list"></i> Kategori
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ url('/ruangan') }}">
-                                                <i class="fas fa-building"></i> Ruangan
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <!-- Ketersediaan Ruangan Dropdown -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#ketersediaanDropdown" aria-expanded="false" aria-controls="ketersediaanDropdown">
-                                    <i class="fas fa-calendar-check"></i> Ketersediaan Ruangan
-                                </a>
-                                <div class="collapse" id="ketersediaanDropdown">
-                                    <ul class="nav flex-column ms-3">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ url('/ketersediaan') }}">
-                                                <i class="fas fa-calendar-alt"></i> Ketersediaan
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ url('/riwayat-transaksi') }}">
-                                                <i class="fas fa-history"></i> Laporan
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/data-peminjaman') }}">
-                                    <i class="fas fa-users"></i> Data Peminjaman
-                                </a>
-                            </li>
-                        @endif
+                                @if(auth()->user()->role == 'admin') <!-- Sidebar untuk Admin -->
+            <div class="sidebar">
+                <div class="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo"> <!-- Ganti dengan logo yang sesuai -->
+                </div>
+                <ul>
+                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
 
-                        @if(auth()->user()->role == 'peminjam') <!-- Sidebar untuk Peminjam -->
-                        <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/informasi') }}">
-                                            <i class></i> Informasi
-                                        </a>
-                                    </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#peminjamanDropdown" aria-expanded="false" aria-controls="peminjamanDropdown">
-                                <i class="fas fa-calendar-check"></i> Peminjaman Ruangan
-                            </a>
-                            <div class="collapse" id="peminjamanDropdown">
-                                <ul class="nav flex-column ms-3">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/pinjam-ruangan') }}">
-                                            <i class="fas fa-calendar-plus"></i> Pinjam Ruangan
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/laporan') }}">
-                                            <i class></i> Laporan
-                                        </a>
-                                    </li>
-                        </li>
-                    @endif
+        <!-- Menu Sidebar untuk Admin -->
+            <li><a href="{{ url('/kategori') }}"><i class=""></i> Kategori</a></li>
+            <li><a href="{{ url('/ruangan') }}"><i class="fas fa-building"></i> Ruangan</a></li>
+            <li><a href="{{ url('/ketersediaan') }}"><i class="fas fa-calendar-alt"></i> Ketersediaan</a></li>
+            <li><a href="{{ url('/riwayat-transaksi') }}"><i class="fas fa-history"></i> Laporan</a></li>
+            <li><a href="{{ url('/data-peminjaman') }}"><i class="fas fa-users"></i> Data Peminjaman</a></li>
+        @endif
+    </ul>
+</div>
+
+                       @if(auth()->user()->role == 'peminjam') <!-- Sidebar untuk Peminjam -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="SIKAD STIMATA Logo"> <!-- Ganti dengan logo yang sesuai -->
+        </div>
+        <ul>
+            <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url('/informasi') }}">
+                <i class></i> Informasi
+            </a></li>
+            <li><a href="{{ url('/pinjam-ruangan') }}">
+                <i class></i> Pinjam Ruangan
+            </a></li>
+            <li><a href="{{ url('/laporan') }}">
+                <i class></i> Laporan
+            </a></li>
+        </ul>
+    </div>
+@endif
 
                         <li class="nav-item">
                             <!-- Form logout dengan metode POST -->

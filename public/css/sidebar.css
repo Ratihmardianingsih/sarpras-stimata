@@ -1,0 +1,510 @@
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #FFB85D;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo img {
+    width: 100px;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+    color: #FF6F00;
+}
+
+/* Main content */
+.main-content {
+     /* Pastikan margin ini cukup besar untuk memberi ruang bagi sidebar */
+    padding: 20px;
+    background-color: white;
+    flex: 1;
+    min-height: 100vh;  /* Pastikan konten utama mengisi seluruh layar */
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFB85D;
+    padding: 15px 25px;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.logout-btn {
+    background-color: #FF6F00;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #e65c00;
+}
+
+/* Card Stats */
+
+.table-container{
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: 15px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    background-color: #FFEEA9; 
+}
+.card-stat-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.card-stat {
+    background-color: #FFF3E0;
+    width: 22%;  /* Lebar dua elemen dalam satu baris */
+    padding: 30px 30px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.card-stat h3 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #FF6F00;
+}
+
+.card-stat p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Kategori */
+    
+        .add-category-btn {
+            background-color: #FF6F00; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 15px;
+}
+        .add-category-btn:hover {
+            background-color: #e65c00; 
+}
+        /* Table */
+        .category-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            margin-left: 15px;
+        }
+
+        .category-table th, .category-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .category-table th {
+            background-color: #FFB85D;
+            color: white;
+        }
+
+        .category-table td {
+            background-color: #FFF3E0;
+        }
+
+        .category-table button {
+            padding: 5px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #FF6F00;
+            color: white;
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-btn:hover {
+            background-color: #e65c00;
+        }
+
+        .delete-btn {
+            background-color: #FF4D4D;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #e04444;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #999;
+        }
+/* Button Tambah Ruangan */
+.add-room-btn {
+    background-color: #FF6F00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.add-room-btn:hover {
+    background-color: #e65c00;
+}
+
+/* Laporan */
+/* Button Export */
+        .export-btns {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .export-btn {
+            background-color: #FF6F00;
+            color: white;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .export-btn:hover {
+            background-color: #e65c00;
+        }
+
+        /* Filter */
+        .filter {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            margin-left: 15px;
+        }
+
+        .filter input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .filter button {
+            background-color: #FF6F00;
+            color: white;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filter button:hover {
+            background-color: #e65c00;
+        }
+/* Form editkategori*/
+
+/* Main content */
+.main-content1 {
+    margin-left: 260px;
+    padding: 20px;
+    background-color: white;
+    flex: 1;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFB85D;
+    padding: 15px 25px;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Form */
+.add-category-form {
+    background-color: #FFF3E0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 15px;
+}
+
+.add-category-form .form-group {
+    margin-bottom: 20px;
+}
+
+.add-category-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.add-category-form button {
+    background-color: #FF6F00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-category-form button:hover {
+    background-color: #e65c00;
+}
+
+/* form tambah ruangan */
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFB85D;
+    padding: 15px 25px;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Tombol Logout */
+.logout-btn {
+    background-color: #FF6F00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #e65c00;
+}
+
+/* Form Tambah Ruangan */
+.add-room-form {
+   background-color: #FFF3E0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 15px;
+}
+
+.add-room-form .form-group {
+    margin-bottom: 15px;
+}
+
+.add-room-form label {
+    font-weight: bold;
+}
+
+.add-room-form input,
+.add-room-form select,
+.add-room-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-room-form button {
+    background-color: #FF6F00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.add-room-form button:hover {
+    background-color: #e65c00;
+}
+
+/* notif */
+.alert {
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-dismissible {
+    padding-right: 40px;
+}
+
+.alert .btn-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    margin-top: -10px;
+    background-color: transparent;
+    border: none;
+    font-size: 1 rem;
+    color: #155724;
+    
+}
+
+.alert-success .btn-close:hover {
+    color: #0b3e0b;
+}
+
+.alert-success .btn-close:focus {
+    outline: none;
+}
+
+/* Tombol Pinjam Ruangan */
+.btn-primary {
+    background-color: #FF6F00;
+    color: white;
+    padding: 10px 20px;
+    margin-left: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: #e65c00;
+}
+.mb-3 {
+    margin-bottom: 20px;
+}
+/* tombol terima/tolak */
+ .approve-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .approve-btn:hover {
+            background-color: #218838;
+        }
+
+        .reject-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .reject-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* onclick detail */
+        .modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}

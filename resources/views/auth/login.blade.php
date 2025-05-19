@@ -1,47 +1,181 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Login - Sarana dan Prasarana</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins', sans-serif;
+                background-color: #FFBC5B;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+            .login-container {
+                background-color: #FEE9A8;
+                padding: 40px 30px;
+                border-radius: 12px;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+                text-align: center;
+                width: 350px;
+            }
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+           .logo {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100px;
+            }
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            h2 {
+                margin: 10px 0 5px;
+                font-size: 18px;
+                font-weight: bold;
+            }
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            p {
+                margin: 5px 0 20px;
+                font-size: 14px;
+                color: #333;
+                line-height: 1.4;
+            }
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            form input[type="email"],
+            form input[type="password"] {
+                width: 100%;
+                padding: 12px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 6px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+            .form-options {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 10px 0 20px;
+                font-size: 13px;
+            }
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+            .remember-me {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                color: #333;
+            }
+
+            .forgot-password {
+                color: #007bff;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .forgot-password:hover {
+                text-decoration: underline;
+            }
+
+            .login-btn {
+                width: 100%;
+                padding: 12px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+
+            .login-btn:hover {
+                background-color: #0066cc;
+            }
+
+            .register-text {
+                margin-top: 15px;
+                font-size: 14px;
+            }
+
+            .register-text a {
+                color: #007bff;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .register-text a:hover {
+                text-decoration: underline;
+            }
+
+            .error {
+                color: red;
+                font-size: 12px;
+                margin-bottom: 5px;
+                text-align: left;
+            }
+
+            .status-message {
+                background-color: #d4edda;
+                color: #155724;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login-container">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo STIMATA" class="logo">
+            <h2>SARANA DAN PRASARANA</h2>
+            <p>STMIKI PPKIA PRANDNYA PARAMITA <br> MALANG</p>
+
+            <!-- Session Status -->
+            @if (session('status'))
+                <div class="status-message">
+                    {{ session('status') }}
+                </div>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <input id="email" type="email" name="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
+                @error('email')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+
+                <input id="password" type="password" name="password" placeholder="Password" required>
+                @error('password')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember" id="remember">
+                        Remember me
+                    </label>
+
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="forgot-password">
+                            Forgot your password?
+                        </a>
+                    @endif
+                </div>
+
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+
+            <p class="register-text">
+                Belum Punya Akun? <a href="{{ route('register') }}">Daftar</a>
+            </p>
         </div>
-    </form>
+    </body>
+    </html>
 </x-guest-layout>

@@ -13,7 +13,7 @@ use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\InformasiController;
-use Barryvdh\DomPDF\Facade as PDF;
+
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RuanganExport;
 use App\Http\Controllers\LaporanController;
@@ -94,9 +94,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/ruangan/export/pdf', [RuanganController::class, 'exportPDF'])->name('ruangan.export.pdf');
         Route::get('/ruangan/export/excel', [RuanganController::class, 'exportExcel'])->name('ruangan.export.excel');
 
-        Route::get('/peminjaman/export/pdf', [PeminjamanController::class, 'exportPDF'])->name('peminjaman.exportPDF');
-        Route::get('/peminjaman/export/excel', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.exportExcel');
+         Route::get('/peminjaman/export/excel', [PeminjamanController::class, 'exportExcel'])->name('peminjaman.exportExcel');
 
+         Route::get('/riwayat/export/pdf', [RiwayatTransaksiController::class, 'exportPDF'])->name('riwayat.export.pdf');
+         Route::get('/riwayat/export/excel', [RiwayatTransaksiController::class, 'exportExcel'])->name('riwayat.export.excel');
+         
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
         // Rute untuk logout
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

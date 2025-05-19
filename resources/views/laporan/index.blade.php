@@ -2,10 +2,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Riwayat Peminjaman Ruang</h1>
+<div class="main-content">
+    <header>
+        <div>
+            <h1>Laporan Peminjaman</h1>
+        </div>
+         <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                 @csrf 
+            <button class="logout-btn">Logout</button>
+        </form>
+    </header>
 
-    <table class="table">
+    <table class="category-table">
         <thead>
             <tr>
                 <th>No</th>

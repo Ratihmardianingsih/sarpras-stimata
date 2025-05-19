@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Peminjaman;
 use App\Models\RiwayatTransaksi;
 use App\Exports\PeminjamanExport;
-use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\LaporanController;
 
@@ -139,14 +138,7 @@ class PeminjamanController extends Controller
 
     return redirect()->route('pinjamruangan.index')->with('success', 'Ruangan telah dikembalikan dan masuk laporan');
 }
-    public function exportPDF()
-{
-
-    $peminjaman = Peminjaman::with(['peminjam', 'ruangan'])->get();  
-    $pdf = PDF::loadView('peminjaman.export_pdf', compact('peminjaman'));
-
-    return $pdf->download('data_peminjaman.pdf');
-}
+   
 public function exportExcel()
 {
     

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Kategori;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RuanganExport;
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 
@@ -113,15 +113,16 @@ public function destroy($id)
     // Redirect setelah berhasil menghapus
     return redirect()->route('ruangan.index')->with('success', 'Ruangan berhasil dihapus');
 }
-public function exportPDF()
-{
-    $ruangans = Ruangan::all();
-    $pdf = PDF::loadView('ruangan.export_pdf', compact('ruangans'));
-    return $pdf->download('ruangan.pdf');
-}
 public function exportExcel()
 {
     return Excel::download(new RuanganExport, 'ruangan.xlsx');
+}
+public function exportPDF()
+{
+    $ruangans = Ruangan::all();  // Ambil data semua ruangan
+
+    $pdf = PDF::loadView('ruangan.export_pdf', compact('ruangans'));  // Gunakan view untuk format PDF
+    return $pdf->download('daftar_ruangan.pdf');  // Unduh PDF
 }
 }
     

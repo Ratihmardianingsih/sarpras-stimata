@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Ruangan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            background-color: #FFBC5B;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #FFB85D;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar .logo img {
+            width: 100px;
+            margin-bottom: 40px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .sidebar ul li a:hover {
+            color: #FF6F00;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+            background-color: white;
+            flex: 1;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FFB85D;
+            padding: 15px 25px;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .logout-btn {
+            background-color: #FF6F00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #e65c00;
+        }
+
+        /* Button Tambah Ruangan */
+        .add-room-btn {
+            background-color: #FF6F00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .add-room-btn:hover {
+            background-color: #e65c00;
+        }
+
+        /* Table */
+        .category-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .category-table th, .category-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .category-table th {
+            background-color: #FFB85D;
+            color: white;
+        }
+
+        .category-table td {
+            background-color: #FFF3E0;
+        }
+
+        .category-table button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #FF6F00;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background-color: #e65c00;
+        }
+
+        .delete-btn {
+            background-color: #FF4D4D;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #e04444;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo"> <!-- Ganti dengan logo yang sesuai -->
+        </div>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Data Ruangan</a></li>
+            <li><a href="#">Kategori Ruangan</a></li>
+            <li><a href="#">Ketersediaan Ruangan</a></li>
+            <li><a href="#">Ketersediaan Laporan</a></li>
+            <li><a href="#">Data Peminjam</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div>
+                <h1>DAFTAR RUANGAN</h1>
+                <p>Menampilkan daftar ruangan yang tersedia</p>
+            </div>
+            <button class="logout-btn">Logout</button>
+        </header>
+
+        <!-- Button Tambah Ruangan -->
+        <a href="{{ route('ruangan.create') }}" class="add-room-btn">Tambah Ruangan</a>
+
+        <!-- Daftar Ruangan -->
+        <table class="category-table">
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>Kode Kategori</th>
+                    <th>Nama Kategori</th>
+                    <th>Nama Ruangan</th>
+                    <th>Kapasitas</th>
+                    <th>Deskripsi</th>
+                    <th>Lokasi</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>KD-RK-01</td>
+                    <td>Ruang Kelas</td>
+                    <td>Ruang Kelas A. 3.1</td>
+                    <td>45</td>
+                    <td>untuk kelas</td>
+                    <td>Lantai 3</td>
+                    <td>
+                        <a href="#" class="edit-btn">EDIT</a>
+                            <button type="submit" class="delete-btn">HAPUS</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>KD-RK-02</td>
+                    <td>Ruang Kelas</td>
+                    <td>Ruang Kelas A. 3.2</td>
+                    <td>50</td>
+                    <td>untuk ujian</td>
+                    <td>Lantai 3</td>
+                    <td>
+                        <a href="#" class="edit-btn">EDIT</a>
+                        
+                            <button type="submit" class="delete-btn">HAPUS</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            <p>Copyright @Stimata2025</p>
+        </footer>
+    </div>
+
+</body>
+</html>
